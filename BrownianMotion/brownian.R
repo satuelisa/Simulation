@@ -1,48 +1,49 @@
-# -*- coding: utf-8 -*-
+repetir <- 100
+duracion <- 200
+eucl <-  FALSE
+library(parallel)
  
-from random import getrandbits, randint
-import matplotlib.pyplot as plt # instalar con pip3
-from math import sqrt, fabs
-import multiprocessing # instalar con pip3
+cluster <- makeCluster(detectCores() - 1)
+clusterExport(cluster, "duracion")
+clusterExport(cluster, "eucl")
+datos <-  data.frame()
  
-def experimento(dim, dur, eucl):
-    pos = [0] * dim
-    mayor = 0
-    delta = getrandbits(dur)
-    for t in range(dur):
-        pos[randint(0, dim - 1)] += 1 if delta % 2 == 0 else -1
-        delta >>= 1
-    mayor = max(mayor, sqrt(sum([p**2 for p in pos])) if eucl else sum([fabs(p) for p in pos]))
-     return mayor
- 
-if __name__ == "__main__":
-    dimension = [d for d in range(1, 9)] # de uno a ocho
-    duracion = 200
-    replicas = 100
-    results = None
-    p = [(d, duracion, True) for d in dimension]
-    p += [(d, duracion, False) for d in dimension]
-    param = p * replicas
-    with multiprocessing.Pool() as pool:
-        results = pool.starmap(experimento, param)
-    eucl = [[] for d in dimension]
-    manh = [[] for d in dimension]
-    for p in param:
-        value = results.pop(0)
-        d = p[0] - 1
-        if p[2]: # euclideana
-         eucl[d].append(value)
-        else: # manhattan
-            manh[d].append(value)
-fig, ax = plt.subplots()
-ax.boxplot(eucl)
-ax.set_xlabel('Dimensión')
-ax.set_ylabel('Distancia máxima')
-ax.set_title('Euclideana')
-plt.savefig('p1ep.png')
-fig, ax = plt.subplots()
-ax.boxplot(manh)
-ax.set_xlabel('Dimensión')
-ax.set_ylabel('Distancia máxima')
-ax.set_title('Manhattan')
-plt.savefig('p1mp.png')
+for (dimension in 1:8) {
+    clusterExport(cluster, "dimension")
+    resultado <- parSapply(cluster, 1:repetir,
+                           function(r) {
+                           pos <- rep(0, dimension)
+                           mayor <- 0
+                           for (t in 1:duracion) {
+                               cambiar <- sample(1:dimension, 1)
+                               cambio <- 1
+                               if (runif(1) < 0.5) {
+                                   cambio <- -1
+                               }
+                               pos[cambiar] <- pos[cambiar] + cambio
+                               if (eucl) {
+                                   d <- sqrt(sum(pos**2))
+                               } else { # Manhattan
+                                   d <- sum(abs(pos))
+                               }
+                               if (d > mayor) {
+                                   mayor <- d
+                               }
+                           }
+                           return(mayor)
+                           })
+    datos <- rbind(datos, resultado)
+}
+stopCluster(cluster)
+if (eucl) {
+    png("p1er.png")
+    boxplot(data.matrix(datos), use.cols=FALSE, 
+       xlab="Dimensi\u{F3}n", ylab="Distancia m\u{E1}xima", 
+       main="Euclideana")
+} else {
+    png("p1mr.png")
+    boxplot(data.matrix(datos), use.cols=FALSE, 
+       xlab="Dimensi\u{F3}n", ylab="Distancia m\u{E1}xima", 
+       main="Manhattan")
+}
+graphics.off()
