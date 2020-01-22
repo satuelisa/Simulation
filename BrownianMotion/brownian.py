@@ -12,8 +12,8 @@ def experimento(dim, dur, eucl):
     for t in range(dur):
         pos[randint(0, dim - 1)] += 1 if delta % 2 == 0 else -1
         delta >>= 1
-     mayor = max(mayor, sqrt(sum([p**2 for p in pos])) if eucl else sum([fabs(p) for p in pos]))
-     return mayor
+    mayor = max(mayor, sqrt(sum([p**2 for p in pos])) if eucl else sum([fabs(p) for p in pos]))
+    return mayor
  
 if __name__ == "__main__":
     dimension = [d for d in range(1, 9)] # de uno a ocho
