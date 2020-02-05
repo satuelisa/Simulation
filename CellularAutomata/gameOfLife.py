@@ -19,6 +19,7 @@ if __name__ == "__main__":
     fig = plt.figure()
     plt.imshow(actual, interpolation='nearest', cmap=cm.Greys)
     plt.savefig('p2p.png')
+    plt.close()
     for iteracion in range(9):
         print("Iter", iteracion)
         with multiprocessing.Pool() as pool: # rehacer para ver cambios en actual
@@ -31,3 +32,4 @@ if __name__ == "__main__":
         plt.imshow(actual, interpolation='nearest', cmap=cm.Greys)
         fig.suptitle('Paso {:d}'.format(iteracion + 1))
         plt.savefig('p2_t{:d}_p.png'.format(iteracion))
+        plt.close()
