@@ -2,15 +2,12 @@ import numpy as np # hay que instalar numpy a parte con pip3 o algo similar
 from random import random
 import matplotlib.cm as cm
 import matplotlib.pyplot as plt
- 
+
 dim = 10
 num = dim**2
 valores = [round(random()) for i in range(num)]
 actual = np.reshape(valores, (dim, dim))
-fig = plt.figure()
-plt.imshow(actual, interpolation='nearest', cmap=cm.Greys)
-plt.savefig('p2p.png')
- 
+
 def paso(pos):
     fila = (pos - 1) // dim
     columna = (pos - 1) % dim
@@ -19,8 +16,11 @@ def paso(pos):
  
 import multiprocessing
 if __name__ == "__main__":
+    fig = plt.figure()
+    plt.imshow(actual, interpolation='nearest', cmap=cm.Greys)
+    plt.savefig('p2p.png')
     for iteracion in range(9):
-        valores = None
+        print("Iter", iteracion)
         with multiprocessing.Pool() as pool: # rehacer para ver cambios en actual
             valores = pool.map(paso, range(num))
         if np.sum(valores) == 0:
