@@ -31,3 +31,4 @@ for j in range(n):
         x = 0
         y += 1
 plt.savefig('p12pg.png')
+plt.close()
