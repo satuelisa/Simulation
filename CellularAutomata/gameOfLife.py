@@ -33,3 +33,5 @@ if __name__ == "__main__":
         fig.suptitle('Paso {:d}'.format(iteracion + 1))
         plt.savefig('p2_t{:d}_p.png'.format(iteracion))
         plt.close()
+# para crear un GIF, se puede usar ImageMagick con
+# convert -delay 100 -size 300x300 -loop 0 p2_t*.png p2p.gif

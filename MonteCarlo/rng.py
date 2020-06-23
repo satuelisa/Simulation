@@ -31,3 +31,4 @@ plt.xlabel(r'$x$')
 plt.ylabel(r'$\frac{2}{\pi} (\exp(x) + \exp(-x))^{-1}$')
 plt.savefig('p5pm.png')
 plt.show() # opcional
+plt.close()

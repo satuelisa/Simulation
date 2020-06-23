@@ -15,9 +15,9 @@ def evaluate(pol, var):
  
  
 def domin_by(target, challenger):
-    if np.any(challenger < target):
+    if np.any(np.greater(target, challenger)):
         return False
-    return np.any(challenger > target)
+    return np.any(np.greater(challenger, target))
  
 vc = 4
 md = 3
