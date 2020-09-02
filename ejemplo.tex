@@ -1,20 +1,25 @@
 \documentclass{article}
-\usepackage[T1]{fontenc}
-\usepackage[spanish]{babel}
 
-\title{Cosas raras}
-\author{José Antonio Peña Pérez}
+\usepackage[spanish]{babel}
+\usepackage[numbers,sort&compress]{natbib}
+
+\title{Reporte 1: Tarea de cosa tal}
+\author{Jos\'{e} Antonio Pe\~{n}a P\'{e}rez}
 
 \begin{document}
 
 \maketitle
 
-\section{Intro}\label{intro}
+\section{Introducci\'{o}n}\label{intro}
 
-Rollo con alguna cosa sin significado.
+Rollo con alguna cosa sin significado \citep{libro}.
+Adem\'{a}s \citet{art} dice cosas importantes.
 
-\section{Conclusión}
+\section{Conclusiones}
 
-En sección \ref{intro}, hubo puro rollo.
+En la secci\'{o}n \ref{intro}, hubo puro rollo.
+
+\bibliography{ejemplo}
+\bibliographystyle{plainnat}
 
 \end{document}
