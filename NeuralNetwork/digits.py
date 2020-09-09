@@ -6,7 +6,11 @@ import pandas as pd
 import numpy as np
  
 modelos = pd.read_csv('digits.txt', sep=' ', header = None)
-modelos = modelos.replace({'n': 0.995, 'g': 0.92, 'b': 0.002})
+#modelos = modelos.replace({'n': 0.995, 'g': 0.92, 'b': 0.002})
+#modelos = modelos.replace({'n': 0.5, 'g': 0.5, 'b': 0.5}) # 10 de Clara
+#modelos = modelos.replace({'n': 0.003, 'g': 0.002, 'b': 0.001}) # 9 de Clara
+#modelos = modelos.replace({'n': 0.01, 'g': 0.008, 'b': 0.98}) # 5 de Clara
+modelos = modelos.replace({'n': 0.99, 'g': 0.98, 'b': 0.97}) # 8 de Clara
 r = 5
 c = 3
 dim = r * c
