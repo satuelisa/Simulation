@@ -29,7 +29,7 @@ if __name__ == "__main__":
     fig.suptitle('Estado inicial')
     plt.savefig('p2_t0_p.png')
     plt.close()
-    for iteracion in range(9):
+    for iteracion in range(8):
         print("Iter", iteracion)
         valores = [paso(x) for x in range(num)]
         vivos = sum(valores)
