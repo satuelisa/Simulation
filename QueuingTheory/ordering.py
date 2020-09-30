@@ -7,7 +7,7 @@ def primo(n):
     for i in range(3, int(ceil(sqrt(n))), 2):
         if n % i == 0:
             return False
-     return True
+    return True
  
 from scipy.stats import describe # instalar con pip3
 from random import shuffle
@@ -33,5 +33,5 @@ if __name__ == "__main__":
             t = time()
             pool.map(primo, aleatorio)
             tiempos["at"].append(time() - t)
-       for tipo in tiempos:
-           print(describe(tiempos[tipo]))
+    for tipo in tiempos:
+        print(describe(tiempos[tipo]))
