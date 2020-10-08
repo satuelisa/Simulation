@@ -1,19 +1,8 @@
 import seaborn as sns 
 from random import randint
 from PIL import Image, ImageColor 
- 
-n = 40
-k = 12
-semillas = []
-for s in range(k):
-    while True:
-        x = randint(0, n - 1)
-        y = randint(0, n - 1)
-        if (x, y) not in semillas:
-            semillas.append((x, y))
-            break
- 
 from math import sqrt
+
 def celda(pos):
     y = pos // n
     x = pos % n
@@ -30,18 +19,24 @@ def celda(pos):
             cercano = i
             menor = dist
     return cercano
- 
-import multiprocessing
-if __name__ == "__main__":
-    celdas = None
-    with multiprocessing.Pool() as pool:
-        celdas = pool.map(celda, range(n * n))
-        zona = Image.new('RGB', (n, n))
-        p = zona.load()
-        c = sns.color_palette("Set3", k).as_hex()
-        for i in range(n * n):
-            s = celdas.pop(0)
-            p[i % n, i // n] = ImageColor.getrgb(c[s])
-    visual = zona.resize((10 * n,  10 * n))
-    visual.show()
-    visual.save("p4pc.png")
+
+n = 100
+k = 50
+semillas = []
+for s in range(k):
+    while True:
+        x = randint(0, n - 1)
+        y = randint(0, n - 1)
+        if (x, y) not in semillas:
+            semillas.append((x, y))
+            break
+celdas = [celda(i) for i in range(n * n)]
+zona = Image.new('RGB', (n, n))
+p = zona.load()
+c = sns.color_palette("Set3", k).as_hex()
+for i in range(n * n):
+    s = celdas.pop(0)
+    p[i % n, i // n] = ImageColor.getrgb(c[s])
+visual = zona.resize((10 * n,  10 * n))
+visual.show()
+visual.save("p4pc.png")
