@@ -3,7 +3,7 @@ zona <- matrix(rep(0, n * n), nrow = n, ncol = n)
 k <- 12
 x <- rep(0, k) # ocupamos almacenar las coordenadas x de las semillas
 y <- rep(0, k) # igual como las coordenadas y de las semillas
- 
+
 for (semilla in 1:k) {
     while (TRUE) { # hasta que hallamos una posicion vacia para la semilla
         fila <- sample(1:n, 1)
@@ -16,7 +16,7 @@ for (semilla in 1:k) {
         }
     }
 }
- 
+
 celda <-  function(pos) {
     fila <- floor((pos - 1) / n) + 1
     columna <- ((pos - 1) %% n) + 1
@@ -37,7 +37,7 @@ celda <-  function(pos) {
         return(cercano)
     }
 }
- 
+
 suppressMessages(library(doParallel))
 registerDoParallel(makeCluster(detectCores() - 1))
 celdas <- foreach(p = 1:(n * n), .combine=c) %dopar% celda(p)
@@ -52,14 +52,14 @@ png("p4c.png")
 par(mar = c(0,0,0,0))
 image(rotate(voronoi), col=rainbow(k+1), xaxt='n', yaxt='n')
 graphics.off()
- 
+
 limite <- n # grietas de que largo minimo queremos graficar
- 
+
 inicio <- function() {
     direccion <- sample(1:4, 1)
     xg <- NULL
     yg <- NULL
-    if (direccion == 1) { # vertical 
+    if (direccion == 1) { # vertical
         xg <- 1
         yg <- sample(1:n, 1)
     } else if (direccion == 2) { # horiz izq -> der
@@ -74,7 +74,7 @@ inicio <- function() {
     }
     return(c(xg, yg))
 }
- 
+
 vp <- data.frame(numeric(), numeric()) # posiciones de posibles vecinos
 for (dx in -1:1) {
     for (dy in -1:1) {
@@ -85,11 +85,10 @@ for (dx in -1:1) {
 }
 names(vp) <- c("dx", "dy")
 vc <- dim(vp)[1]
- 
+
 propaga <- function(replica) {
-    # probabilidad de propagacion interna
-    prob <- 1
-    dificil <- 0.99
+    prob <- 1 # entre fronteras
+    dificil <- 0.99 # interno a la celda
     grieta <- voronoi # marcamos la grieta en una copia
     i <- inicio() # posicion inicial al azar
     xg <- i[1]
