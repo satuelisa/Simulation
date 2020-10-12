@@ -20,8 +20,8 @@ def celda(pos):
             menor = dist
     return cercano
 
-n = 100
-k = 50
+n = 200
+k = 100
 semillas = []
 for s in range(k):
     while True:

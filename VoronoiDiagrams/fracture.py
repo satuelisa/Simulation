@@ -1,11 +1,10 @@
 import seaborn as sns
 from math import sqrt
-import multiprocessing
 from scipy.stats import describe
 from PIL import Image, ImageColor
 from random import randint, choice
  
-n, k, semillas = 40, 12, []
+n, k, semillas = 80, 30, []
 for s in range(k):
     while True:
         x, y = randint(0, n - 1), randint(0, n - 1)
@@ -38,23 +37,20 @@ def inicio():
     else:
         return (n - 1, randint(0, n - 1))
  
-if __name__ == "__main__":
-    celdas = None
-    with multiprocessing.Pool() as pool:
-        celdas = pool.map(celda, range(n * n))
-        voronoi = Image.new('RGB', (n, n))
-        vor = voronoi.load()
-        c = sns.color_palette("Set3", k).as_hex()
-        for i in range(n * n):
-            vor[i % n, i // n] = ImageColor.getrgb(c[celdas.pop(0)])
-        limite, vecinos = n, []
-        for dx in range(-1, 2):
-            for dy in range(-1, 2):
-                if dx != 0 or dy != 0:
-                    vecinos.append((dx, dy))
+celdas = [celda(i) for i in range(n * n)]
+voronoi = Image.new('RGB', (n, n))
+vor = voronoi.load()
+c = sns.color_palette("Set3", k).as_hex()
+for i in range(n * n):
+    vor[i % n, i // n] = ImageColor.getrgb(c[celdas.pop(0)])
+limite, vecinos = n, []
+for dx in range(-1, 2):
+    for dy in range(-1, 2):
+        if dx != 0 or dy != 0:
+            vecinos.append((dx, dy))
  
 def propaga(replica):
-    prob, dificil = 1, 0.99
+    prob, dificil = 0.9, 0.8
     grieta = voronoi.copy()
     g = grieta.load()
     (x, y) = inicio()
@@ -73,13 +69,13 @@ def propaga(replica):
                        interior.append(v)
                    else:
                        frontera.append(v)
-         elegido = None
-         if len(frontera) > 0:
-              elegido = choice(frontera)
-              prob = 1
-         elif len(interior) > 0:
-             elegido = choice(interior)
-             prob *= dificil
+        elegido = None
+        if len(frontera) > 0:
+            elegido = choice(frontera)
+            prob = 1
+        elif len(interior) > 0:
+            elegido = choice(interior)
+            prob *= dificil
         if elegido is not None:
             (dx, dy) = elegido
             x, y = x + dx, y + dy
@@ -90,7 +86,6 @@ def propaga(replica):
         visual.save("p4pg_{:d}.png".format(replica))
     return largo
  
-#    for r in range(10): # pruebas sin paralelismo
-#        propaga(r)
-    with multiprocessing.Pool() as pool: # rehacer para que vean voronoi y vecinos
-        print(describe(pool.map(propaga, range(200))))
+for r in range(10): # pruebas sin paralelismo
+    propaga(r)
+

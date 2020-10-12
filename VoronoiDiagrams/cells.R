@@ -1,9 +1,9 @@
-n <-  40
+n <-  20
 zona <- matrix(rep(0, n * n), nrow = n, ncol = n)
-k <- 12
+k <- 5
 x <- rep(0, k) # ocupamos almacenar las coordenadas x de las semillas
 y <- rep(0, k) # igual como las coordenadas y de las semillas
- 
+
 for (semilla in 1:k) {
     while (TRUE) { # hasta que hallamos una posicion vacia para la semilla
         fila <- sample(1:n, 1)
@@ -16,7 +16,7 @@ for (semilla in 1:k) {
         }
     }
 }
- 
+
 celda <-  function(pos) {
     fila <- floor((pos - 1) / n) + 1
     columna <- ((pos - 1) %% n) + 1
@@ -37,7 +37,7 @@ celda <-  function(pos) {
         return(cercano)
     }
 }
- 
+
 suppressMessages(library(doParallel))
 registerDoParallel(makeCluster(detectCores() - 1))
 celdas <- foreach(p = 1:(n * n), .combine=c) %dopar% celda(p)
