@@ -24,7 +24,7 @@ import matplotlib.pyplot as plt
  
 plt.rc('text', usetex=True)
 plt.rc('font', family='serif')
-plt.hist(muestra, bins = X, normed = True, align = 'right')
+plt.hist(muestra, bins = X, density = True, align = 'right')
 plt.plot(X, Y)
 plt.title('Histograma de $g(x)$ comparado con $g(x)$')
 plt.xlabel(r'$x$')
