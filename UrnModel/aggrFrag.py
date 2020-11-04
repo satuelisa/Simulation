@@ -59,7 +59,6 @@ def unirse(tam, cuantos):
             res.append(tam)
     return res
  
-from scipy.stats import itemfreq
 from numpy.random import shuffle
 import matplotlib.pyplot as plt
  
@@ -69,19 +68,18 @@ digitos = floor(log(duracion, 10)) + 1
 for paso in range(duracion):
     assert sum(cumulos) == n
     assert all([c > 0 for c in cumulos]) 
-    freq = itemfreq(cumulos) # actualizar urnas
+    (tams, freqs) = np.unique(cumulos, return_counts = True)
     cumulos = []
-    for i in range(freq.shape[0]):
-        urna = freq[i]
-        tam = urna[0]
-        cumulos += romperse(tam, urna[1])
+    assert len(tams) == len(freqs)
+    for i in range(len(tams)):
+        cumulos += romperse(tams[i], freqs[i]) 
     assert sum(cumulos) == n
     assert all([c > 0 for c in cumulos]) 
-    freq = itemfreq(cumulos) # actualizar urnas
+    (tams, freqs) = np.unique(cumulos, return_counts = True)
     cumulos = []
-    for i in range(freq.shape[0]):
-        urna = freq[i]
-        cumulos += unirse(urna[0], urna[1])
+    assert len(tams) == len(freqs)
+    for i in range(len(tams)):
+        cumulos += unirse(tams[i], freqs[i])
     cumulos = np.asarray(cumulos)
     neg = cumulos < 0
     a = len(cumulos)
@@ -100,7 +98,7 @@ for paso in range(duracion):
     assert sum(cumulos) == n
     assert all([c != 0 for c in cumulos])
     cortes = np.arange(min(cumulos), max(cumulos), 50)
-    plt.hist(cumulos, bins = cortes, align = 'right', normed = True)
+    plt.hist(cumulos, bins = cortes, align = 'right', density = True)
     plt.xlabel('Tamaño')
     plt.ylabel('Frecuencia relativa')
     plt.ylim(0, 0.05)
