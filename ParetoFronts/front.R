@@ -5,7 +5,7 @@ pick.one <- function(x) {
         return(sample(x, 1))
     }
 }
- 
+
 poli <- function(maxdeg, varcount, termcount) {
     f <- data.frame(variable=integer(), coef=integer(), degree=integer())
     for (t in 1:termcount) {
@@ -16,7 +16,7 @@ poli <- function(maxdeg, varcount, termcount) {
     names(f) <- c("variable", "coef", "degree")
     return(f)
 }
- 
+
 eval <- function(pol, vars, terms) {
     value <- 0.0
     for (t in 1:terms) {
@@ -25,14 +25,14 @@ eval <- function(pol, vars, terms) {
     }
     return(value)
 }
- 
+
 domin.by <- function(target, challenger) {
     if (sum(challenger < target) > 0) {
         return(FALSE) # hay empeora
     } # si no hay empeora, vemos si hay mejora
     return(sum(challenger > target) > 0)
 }
- 
+
 vc <- 4
 md <- 3
 tc <- 5
@@ -70,7 +70,7 @@ no.dom <- logical()
 for (i in 1:n) {
     d <- logical()
     for (j in 1:n) {
-        d <- c(d, domin.by(sign * val[i,], sign * val[j,], k))
+        d <- c(d, domin.by(sign * val[i,], sign * val[j,]))
     }
     no.dom <- c(no.dom, sum(d) == 0) # nadie le domina
 }
