@@ -3,9 +3,10 @@ from random import random
 import matplotlib.cm as cm
 import matplotlib.pyplot as plt
 
-dim = 10
+dim = 50
 num = dim**2
-valores = [round(random()) for i in range(num)]
+p = 0.3
+valores = [1 * (random() < p) for i in range(num)]
 actual = np.reshape(valores, (dim, dim))
 
 def mapeo(pos):
@@ -22,7 +23,6 @@ def paso(pos):
                       max(0, columna - 1):min(dim, columna + 2)]
     return 1 * (np.sum(vecindad) - actual[fila, columna] == 3)
 
-print(actual)        
 if __name__ == "__main__":
     fig = plt.figure()
     plt.imshow(actual, interpolation='nearest', cmap=cm.Greys)
@@ -38,7 +38,6 @@ if __name__ == "__main__":
             print('# Ya no queda nadie vivo.')
             break;
         actual = np.reshape(valores, (dim, dim))
-        print(actual)        
         fig = plt.figure()
         plt.imshow(actual, interpolation='nearest', cmap=cm.Greys)
         fig.suptitle('Paso {:d}'.format(iteracion + 1))

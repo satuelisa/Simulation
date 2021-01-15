@@ -52,6 +52,14 @@ capacidad = int(round(sum(pesos) * 0.65))
 print(pesos)
 print(valores)
 print(knapsack(capacidad, pesos, valores))
-for i in range(10):
+
+def replica(rID):
     intento = al_azar(n)
-    print((factible(intento, pesos, capacidad), objetivo(intento, valores)))
+    return (factible(intento, pesos, capacidad), objetivo(intento, valores)) 
+
+import multiprocessing as mp
+if __name__ == '__main__':
+    pool = mp.Pool(mp.cpu_count() - 1)
+    salida = pool.map(replica, range(10))
+    for s in salida:
+        print(s)
