@@ -23,8 +23,12 @@ if __name__ == "__main__":
     p = [(d, duracion, True) for d in dimension]
     p += [(d, duracion, False) for d in dimension]
     param = p * replicas
+    if replicas < 3:
+        print(param)
     with multiprocessing.Pool() as pool:
         results = pool.starmap(experimento, param)
+    if replicas < 3:
+        print(results)
     eucl = [[] for d in dimension]
     manh = [[] for d in dimension]
     for p in param:
@@ -34,6 +38,8 @@ if __name__ == "__main__":
             eucl[d].append(value)
         else: # manhattan
             manh[d].append(value)
+    if replicas < 3:            
+        print(eucl, manh)
     fig, ax = plt.subplots()
     ax.boxplot(eucl)
     ax.set_xlabel('Dimensión')
