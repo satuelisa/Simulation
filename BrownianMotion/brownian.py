@@ -31,7 +31,7 @@ if __name__ == "__main__":
         value = results.pop(0)
         d = p[0] - 1
         if p[2]: # euclideana
-         eucl[d].append(value)
+            eucl[d].append(value)
         else: # manhattan
             manh[d].append(value)
     fig, ax = plt.subplots()
