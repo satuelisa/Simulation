@@ -12,6 +12,7 @@ def primo(n):
 from scipy.stats import describe # instalar con pip3
 from random import shuffle
 import multiprocessing
+cores = multiprocessing.cpu_count()
 from time import time
 if __name__ == "__main__":
     desde = 1000
@@ -21,7 +22,7 @@ if __name__ == "__main__":
     aleatorio = original.copy()
     replicas = 10
     tiempos = {"ot": [], "it": [], "at": []}
-    with multiprocessing.Pool() as pool:
+    with multiprocessing.Pool(processes = cores - 1) as pool:
         for r in range(replicas):
             t = time()
             pool.map(primo, original)
