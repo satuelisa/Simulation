@@ -59,16 +59,16 @@ inicio <- function() {
     direccion <- sample(1:4, 1)
     xg <- NULL
     yg <- NULL
-    if (direccion == 1) { # vertical
+    if (direccion == 1) { # horiz izq -> der
         xg <- 1
         yg <- sample(1:n, 1)
-    } else if (direccion == 2) { # horiz izq -> der
+    } else if (direccion == 2) { # vertical abajo -> arriba
         xg <- sample(1:n, 1)
         yg <- 1
     } else if (direccion == 3) { # horiz der -> izq
         xg <- n
         yg <- sample(1:n, 1)
-    } else { # vertical al reves
+    } else { # vertical arriba -> abajo
         xg <- sample(1:n, 1)
         yg <- n
     }
