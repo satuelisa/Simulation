@@ -20,8 +20,8 @@ def celda(pos):
             menor = dist
     return cercano
 
-n = 200
-k = 100
+n = 40
+k = 12
 semillas = []
 for s in range(k):
     while True:
@@ -30,10 +30,19 @@ for s in range(k):
         if (x, y) not in semillas:
             semillas.append((x, y))
             break
-celdas = [celda(i) for i in range(n * n)]
-zona = Image.new('RGB', (n, n))
+print('Semillas creadas')
+fondo = (255, 0, 0) # rojo
+zona = Image.new('RGB', (n, n), color = fondo)
 p = zona.load()
 c = sns.color_palette("Set3", k).as_hex()
+i = 0
+for (x, y) in semillas:
+    p[x, y] =  ImageColor.getrgb(c[i])
+    i += 1
+visual = zona.resize((10 * n,  10 * n))
+visual.save("p4p.png")
+print('Celdas calculadas')
+celdas = [celda(i) for i in range(n * n)]
 for i in range(n * n):
     s = celdas.pop(0)
     p[i % n, i // n] = ImageColor.getrgb(c[s])
