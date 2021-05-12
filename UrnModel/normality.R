@@ -1,20 +1,21 @@
 k <- 1000
 n <- 100000
+eps <- 0.0000001
 originales <- rnorm(k)
-cumulos <- originales - min(originales)  + 1
+cumulos <- originales - min(originales)  + eps
 cumulos <- round(n * cumulos / sum(cumulos))
-cumulos <- round(cumulos) 
-diferencia <- n - sum(cumulos) 
-if (diferencia > 0) { 
+cumulos <- round(cumulos)
+diferencia <- n - sum(cumulos)
+if (diferencia > 0) {
     for (i in 1:diferencia) {
-        p <- sample(1:k, 1) 
-        cumulos[p] <- cumulos[p] + 1 
+        p <- sample(1:k, 1)
+        cumulos[p] <- cumulos[p] + 1
     }
-} else if (diferencia < 0) { 
+} else if (diferencia < 0) {
     for (i in 1:-diferencia) {
-        p <- sample(1:k, 1) 
-        if (cumulos[p] > 1) { 
-            cumulos[p] <- cumulos[p] - 1 
+        p <- sample(1:k, 1)
+        if (cumulos[p] > 1) {
+            cumulos[p] <- cumulos[p] - 1
         }
     }
 }
