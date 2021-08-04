@@ -20,8 +20,8 @@ def celda(pos):
             menor = dist
     return cercano
 
-n = 40
-k = 12
+n = 500
+k = 25
 semillas = []
 for s in range(k):
     while True:
@@ -46,6 +46,10 @@ celdas = [celda(i) for i in range(n * n)]
 for i in range(n * n):
     s = celdas.pop(0)
     p[i % n, i // n] = ImageColor.getrgb(c[s])
-visual = zona.resize((10 * n,  10 * n))
-visual.show()
+# semillas en negro (para Edson)
+for i in range(k):
+    (x, y) = semillas[i]
+    p[x, y] = (0, 0, 0)
+visual = zona.resize((2 * n,  2 * n))
+# visual.show()
 visual.save("p4pc.png")

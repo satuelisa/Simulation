@@ -3,3 +3,11 @@
 *.png
 *.pyc
 *.gif
+Homework0/main.blg
+*.bbl
+*.out
+*.log
+*.aux
+*.blg
+*.txt#
+UrnModel/#temp#
