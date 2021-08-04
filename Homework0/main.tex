@@ -1,58 +1,64 @@
-\documentclass{amsart}
-\setlength{\parskip}{5pt}
-\setlength{\parindent}{0pt}
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage[sort&compress,numbers]{natbib}
-\usepackage{url}
-\usepackage[top=10mm,left=20mm,right=20mm,bottom=30mm]{geometry}
-\usepackage{hyperref}
-\usepackage{graphicx}
-\usepackage{multicol}
-\usepackage[spanish]{babel}
-\pagestyle{myheadings}
+\documentclass{article}
+\setlength{\parskip}{5pt} % esp. entre parrafos
+\setlength{\parindent}{0pt} % esp. al inicio de un parrafo
+\usepackage{amsmath} % mates
+\usepackage[sort&compress,numbers]{natbib} % referencias
+\usepackage{url} % que las URLs se vean lindos
+\usepackage[top=25mm,left=20mm,right=20mm,bottom=25mm]{geometry} % margenes
+\usepackage{hyperref} % ligas de URLs
+\usepackage{graphicx} % poner figuras
+\usepackage[spanish]{babel} % otros idiomas
 
-\author{Elisa Schaeffer}
-\title{Tarea \#0 --- Simulación --- Febrero--junio 2021}
+\author{Elisa Schaeffer} % author
+\title{Tarea demo} % titulo
+\date{\today}
 
-\begin{document}
-\thispagestyle{empty}
+\begin{document} % inicia contenido
 
-\maketitle
+\maketitle % cabecera
 
-\begin{abstract}
-Es simplemente una demo sencilla del uso básico de \LaTeX{} en Overleaf.
+\begin{abstract} % resumen
+  Es simplemente una demo sencilla del uso b\'{a}sico de \LaTeX{} en
+  Overleaf.
 \end{abstract}
 
-\section{Introducción}
-\label{intro}
+\section{Introducci\'{o}n}\label{intro} % seccion y etiqueta
 
-Este es un texto ejemplo porque quiero mostrar a mis alumnos el uso de \url{https://overleaf.com} para que hagan los reportes de sus tareas. Vamos a incluir una ecuación
+
+
+Este es un texto ejemplo para que hagan los reportes de sus
+tareas. Vamos a incluir una ecuaci\'{o}n \eqref{equ}:
 \begin{equation}
-    f(x) = 2 \sin(x) - \int_0^\infty \frac{1}{1 + x} \text{d}x.
+  f(x) = 2 \sin(x) - \int_0^\infty \frac{1}{1 + x} \text{d}x.
+  \label{equ}
 \end{equation}
-Vamos a aprender además a citar fuentes \citep{ejemplo}. Incluimos un cuadro \ref{datos} con algunos datos y en la figura \ref{limon} hay un limón.
 
-\begin{table}[b]
-    \caption{Ocupo explicar de qué se trata mi cuadro.}
-    \label{datos}
+\begin{figure} % figura
     \centering
-    \begin{tabular}{l|cr}
+    \includegraphics[width=30mm]{limon.jpg} % archivo
+    \caption{Lim\'{o}n tomado de \url{https://www.elmundo.es/elmundo/2011/01/25/ciencia/1295977576.html} con licencia CC.}
+    \label{limon}
+\end{figure}
+
+\newpage
+
+Vamos a aprender adem\'{a}s a citar fuentes \citep{ejemplo}. Incluimos un
+cuadro \ref{datos} con algunos datos y en la figura \ref{limon} hay un
+lim\'{o}n.
+
+\begin{table} % cuadro
+    \caption{Ocupo explicar de qu\'{e} se trata mi cuadro.} % explicacion
+    \label{datos} % etiqueta
+    \centering % centrar
+    \begin{tabular}{l|cr} % izq sep centrada der
          Algo & $\beta$ & 10.220 \\
          Otro & $\alpha$ & 1932.323
     \end{tabular}
 \end{table}
 
-\begin{figure}[b]
-    \centering
-    \includegraphics[width=60mm]{limon.jpg}
-    \caption{Limón tomado de \url{https://www.elmundo.es/elmundo/2011/01/25/ciencia/1295977576.html} con licencia CC.}
-    \label{limon}
-\end{figure}
-
 \section{Conclusiones}
 
-En este documento no más se hizo una intro en la sección \ref{intro} y luego ya se me quitaron las ganas de meterle más rollo.
+En este documento no m\'{a}s se hizo una intro en la secci\'{o}n \ref{intro}.
 
 \bibliography{simu}
 \bibliographystyle{plainnat}
