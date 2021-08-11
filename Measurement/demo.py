@@ -16,5 +16,5 @@ rep = 3
 def tem():
     Q = M @ M
 
-print(timeit('tem()', 'from __main__ import tem, M', number = rep))
+print(timeit('tem()', 'from __main__ import tem', number = rep))
 
