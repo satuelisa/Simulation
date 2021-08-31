@@ -52,7 +52,6 @@ def unirse(tam, cuantos):
             res.append(tam)
     return res
  
-from scipy.stats import itemfreq
 from numpy.random import shuffle
 import matplotlib.pyplot as plt
  
@@ -60,12 +59,11 @@ duracion = 10
 digitos = floor(log(duracion, 10)) + 1
  
 for paso in range(duracion):
-    freq = itemfreq(cumulos)    
-    l = freq.shape[0]
-    cumulos = []    
-    for i in range(l):
-        urna = freq[i]
-        cumulos += unirse(urna[0], urna[1])
+    (tams, freqs) = np.unique(cumulos, return_counts = True)
+    cumulos = []
+    assert len(tams) == len(freqs)
+    for i in range(len(tams)):
+        cumulos += unirse(tams[i], freqs[i]) 
     cumulos = np.asarray(cumulos)
     neg = cumulos < 0
     a = len(cumulos)
@@ -80,7 +78,7 @@ for paso in range(duracion):
                 cumulos.append(juntarse[2*i] + juntarse[2*i+1])
         if nt % 2 == 1: # fue una cantidad impar
             cumulos.append(juntarse[-1]) # el ultimo
-    plt.hist(cumulos, align = 'right', normed = True)
+    plt.hist(cumulos, align = 'right', density = True)
     plt.xlabel('Tamaño')
     plt.ylabel('Frecuencia relativa')
     plt.ylim(0, 0.05)

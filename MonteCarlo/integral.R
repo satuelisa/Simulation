@@ -1,11 +1,11 @@
 desde <- 3
 hasta <- 7
-pedazo <- 50000
-cuantos <- 500
+pedazo <- 50
+cuantos <- 2
 f <- function(x) { return(1 / (exp(x) + exp(-x))) }
 g <- function(x) { return((2 / pi) * f(x)) }
 suppressMessages(library(distr))
-generador  <- r(AbscontDistribution(d = g)) # creamos un generador            
+generador  <- r(AbscontDistribution(d = g)) # creamos un generador
 parte <- function() {
     valores <- generador(pedazo)
     return(sum(valores >= desde & valores <= hasta))

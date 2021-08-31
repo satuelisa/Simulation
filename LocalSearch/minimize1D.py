@@ -29,7 +29,7 @@ for tiempo in range(tmax):
     plt.xlim(low, high)
     plt.ylim(-0.5, f(high))
     ax = plt.subplot(1, 1, 1)
-    ax.plot(x, vf(x))
+    ax.plot(x, y)
     ax.axvline(x = best, color = 'green')    
     ax.scatter(curr, f(curr), marker = 'o', color = 'red')
     plt.xlabel('x')

@@ -43,7 +43,6 @@ def romperse(tam, cuantos):
             res.append(tam) # no rompió
     return res
  
-from scipy.stats import itemfreq
 import matplotlib.pyplot as plt
  
 duracion = 10
@@ -51,16 +50,15 @@ digitos = floor(log(duracion, 10)) + 1
 xmax = None
  
 for paso in range(duracion):
-    pedazos = []
-    freq = itemfreq(cumulos)    
-    l = freq.shape[0]
-    for i in range(l):
-        urna = freq[i]
-        pedazos += romperse(urna[0], urna[1]) 
+    (tams, freqs) = np.unique(cumulos, return_counts = True)
+    cumulos = []
+    assert len(tams) == len(freqs)
+    for i in range(len(tams)):
+        cumulos += romperse(tams[i], freqs[i]) 
     if xmax is None:
-        xmax = 1.05 * max(pedazos)
+        xmax = 1.05 * max(cumulos)
  
-    plt.hist(pedazos, align = 'right', normed = True)
+    plt.hist(cumulos, align = 'right', density = True)
     plt.title('Estado inicial')
     plt.xlabel('Tamaño')
     plt.ylabel('Frecuencia relativa')

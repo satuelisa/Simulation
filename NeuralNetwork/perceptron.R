@@ -2,9 +2,9 @@ tasa <- 0.15 # tasa de aprendizaje
 tranqui <- 0.95 # se va bajando con ajustes hechos
 dim <- 2
 w <- runif(dim) # pesos del perceptron, al azar inicialmente
- 
+
 dibuja <- TRUE
- 
+
 if (dibuja) {
     xT <- double()
     yT <- double()
@@ -13,13 +13,13 @@ if (dibuja) {
     xi <- -1
     xf <- 2
 }
- 
+
 # contadores
 tP <- 0 # true positive (ambos son 1)
-fP <- 0 # da falso aunque era verdad
+fP <- 0 # da verdad aunque era falso
 tN <- 0 # true negative (ambos son 0)
-fN <- 0 # da verdad aunque era falso
- 
+fN <- 0 # da falso aunque era verdad
+
 tmax <- 150 # pasos en total
 entrenamiento <- ceiling(0.7 * tmax)
 prueba <- tmax - entrenamiento # probamos despues de entrenar

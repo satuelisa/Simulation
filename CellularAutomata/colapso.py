@@ -1,6 +1,6 @@
 from random import randint
 
-def experimento():
+def experimento(eID): # argumento dummy para map
     maximo = 0
     pobl = 1000
     anterior = None
@@ -13,6 +13,8 @@ def experimento():
         anterior = pobl
     return maximo
 
-if __name__ == "__main__":
-    for replica in range(10):
-        print('mayor colapso', experimento())
+from multiprocessing import Pool, cpu_count
+
+if __name__ == '__main__':
+    k = cpu_count() - 1
+    print(Pool(k).map(experimento, [x for x in range(10)])) # replicas

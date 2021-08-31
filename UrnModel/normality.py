@@ -5,9 +5,10 @@ from random import randint
  
 k = 1000
 n = 100000
+eps = 0.000001
 orig = np.random.normal(size = k)
 cumulos = orig - min(orig)
-cumulos += 1 # ahora el menor vale uno
+cumulos += eps # ahora el menor vale uno
 cumulos = cumulos / sum(cumulos) # ahora suman a uno
 cumulos *= n # ahora suman a n, pero son valores decimales
 cumulos = np.round(cumulos).astype(int) # ahora son enteros
