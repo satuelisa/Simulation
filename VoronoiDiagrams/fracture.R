@@ -87,8 +87,8 @@ names(vp) <- c("dx", "dy")
 vc <- dim(vp)[1]
 
 propaga <- function(replica) {
-    prob <- 1 # entre fronteras
-    dificil <- 0.99 # interno a la celda
+    prob <- 1 # interno a la celda (inicial)
+    dificil <- 0.99 # bajada al interior
     grieta <- voronoi # marcamos la grieta en una copia
     i <- inicio() # posicion inicial al azar
     xg <- i[1]
