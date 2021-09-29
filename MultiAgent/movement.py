@@ -30,7 +30,7 @@ for tiempo in range(tmax):
         if a1.estado == 'I':
             for j in range(n):
                 a2 = agentes.iloc[j]
-                if a2.estado == 'S':
+                if a2.estado == 'S' and not contagios[j]:
                     dx = a1.x - a2.x
                     dy = a1.y - a2.y
                     d = sqrt(dx**2 + dy**2)
