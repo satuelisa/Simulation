@@ -6,7 +6,7 @@ cumulos <- cumulos - min(cumulos) # ahora el menor vale cero
 cumulos <- cumulos + eps # ahora el menor vale epsilon (chico)
 cumulos <- cumulos / sum(cumulos) # ahora suman a uno
 cumulos <- n * cumulos # ahora suman a n, pero son valores decimales
-cumulos <- round(cumulos) # ahora son enteros
+cumulos <- ceiling(cumulos) # ahora son enteros
 diferencia <- n - sum(cumulos) # por cuanto le hemos fallado
 if (diferencia > 0) { # faltan particulas
     for (i in 1:diferencia) {
