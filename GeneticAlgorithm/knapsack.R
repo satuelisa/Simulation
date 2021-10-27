@@ -30,14 +30,15 @@ knapsack <- function(cap, peso, valor) {
         return(max(tabla))
     }
 }
-n = 25
+n = 1000 # ya tarda un buen
 low = 1
-high = 15
+high = 150
 # ordenados de menor a mayor
 peso <- sort(round(runif(n, low, high)))
 low = 120
-high = 15000
+high = 100000
 valor <- round(runif(n, low, high))
 total = sum(peso)
 capacidad = round(0.6 * total)
-print(knapsack(capacidad, peso, valor))
+optimo = knapsack(capacidad, peso, valor)
+print(optimo)
