@@ -91,8 +91,8 @@ p <- poblacion.inicial(n, init)
 tam <- dim(p)[1]
 assert(tam == init)
 pm <- 0.05
-rep <- 50
-tmax <- 50
+rep <- 10
+tmax <- 15
 mejores <- double()
 for (iter in 1:tmax) {
     p$obj <- NULL
