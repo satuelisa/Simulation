@@ -21,16 +21,23 @@ knapsack <- function(cap, peso, valor) {
             v <- valor[objeto] # y su valor a otra variable
             for (acum in 1:(cap+1)) { # consideramos cada fila de la tabla
                  anterior <- acum - p
-                 tabla[acum, objeto + 1] <- tabla[acum, objeto]               
+                 tabla[acum, objeto + 1] <- tabla[acum, objeto]
                 if (anterior > 0) { # si conocemos una combinacion con ese peso
                     tabla[acum, objeto + 1] <- max(tabla[acum, objeto], tabla[anterior, objeto] + v)
-                } 
+                }
             }
         }
-        print(tabla)
         return(max(tabla))
     }
 }
-peso <- c(1, 2, 4, 5, 5, 8, 12) # ordenados de menor a mayor
-valor <- c(3, 8, 24, 7, 10, 12, 30)
-print(knapsack(40, peso, valor))
+n = 25
+low = 1
+high = 15
+# ordenados de menor a mayor
+peso <- sort(round(runif(n, low, high)))
+low = 120
+high = 15000
+valor <- round(runif(n, low, high))
+total = sum(peso)
+capacidad = round(0.6 * total)
+print(knapsack(capacidad, peso, valor))
