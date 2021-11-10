@@ -15,10 +15,10 @@ if dibuja:
   
 # contadores
 tP = 0 # true positive (ambos son 1)
-fP = 0 # da falso aunque era verdad
+fP = 0 # da true aunque era false
 tN = 0 # true negative (ambos son 0)
-fN = 0 # da verdad aunque era falso
-tmax = 150 # pasos en total
+fN = 0 # da false aunque era true
+tmax = 60 # pasos en total
  
 from math import ceil, floor, log
 entrenamiento = int(ceil(0.7 * tmax))
@@ -34,8 +34,8 @@ from random import random
 for t in range(tmax):
     entrada = np.random.rand(2)
     x, y = entrada[0], entrada[1]
-    deseada = x > y
-    resultado = sum(w * entrada) >= 0
+    deseada = x > y # true si estamos debajo del diagonal 
+    resultado = sum(w * entrada) >= 0 # producto interno y comparasion
     if t <= entrenamiento: # aprende durante entrenamiento
         if deseada != resultado:  # pero hubo un error en la salida
             ajuste = tasa * (1 * deseada - 1 * resultado)
@@ -61,9 +61,9 @@ for t in range(tmax):
                 tN += 1
         else:
             bien = False
-            if deseada:
+            if deseada: # resultado negativo (queriamos positivo)
                 fN += fN 
-            else:
+            else: # resultado positivo (queriamos negativo)
                 fP += fP
         if dibuja:
             fase = "Fase de prueba,"
