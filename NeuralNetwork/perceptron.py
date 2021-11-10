@@ -62,9 +62,9 @@ for t in range(tmax):
         else:
             bien = False
             if deseada: # resultado negativo (queriamos positivo)
-                fN += fN 
+                fN += 1 
             else: # resultado positivo (queriamos negativo)
-                fP += fP
+                fP += 1
         if dibuja:
             fase = "Fase de prueba,"
     if dibuja:
