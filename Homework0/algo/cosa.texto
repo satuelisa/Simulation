@@ -1,1 +1,22 @@
-hola, esto es una demo
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel} % otros idiomas
+
+\title{P0}
+\author{Elisa}
+\date{Tarea demo}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract} % resumen
+  Es simplemente una demo sencilla del uso b\'{a}sico de \LaTeX{} en
+  Overleaf.
+\end{abstract}
+
+\section{Introducción}
+
+hola mundo
+
+\end{document}
