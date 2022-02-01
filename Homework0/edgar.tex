@@ -1,10 +1,17 @@
 % no se puede usar pdflatex, hay que usar LaTeX simple
 \documentclass[11pt]{article}
 \usepackage{pst-all}
-\begin{document}
 \psset{xunit=.5cm,yunit=0.5cm,algebraic=true}
-\begin{pspicture}(-11,11)(11,11)
+
+\begin{document}
+
+Va rollo para que haya texto.
+
+\begin{figure}
+\begin{pspicture}(-11,-11)(11,11)
   \psaxes[Dx=2, Dy=2, subticks=2, labelFontSize=\scriptstyle]{<->}(0,0)(-10.5,-10.5)(10.5,10.5)[$x$,0][$y$,90]
   \psplot[linestyle = dotted, linewidth = 2pt, linecolor = red, yMaxValue = 10, yMinValue = -10]{0.1}{10}{.5*x^2}
 \end{pspicture}
+\caption{Demo.}
+\end{figure}
 \end{document}
