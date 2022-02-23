@@ -13,8 +13,8 @@ primo <- function(n) {
     return(TRUE)
 }
 
-desde <- 1000
-hasta <-  3000
+desde <- 100
+hasta <-  300
 original <- desde:hasta
 invertido <- hasta:desde
 aleatorio <- sample(original) # fijo
