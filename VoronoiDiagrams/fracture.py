@@ -1,6 +1,5 @@
 import seaborn as sns
 from math import sqrt
-from scipy.stats import describe
 from PIL import Image, ImageColor
 from random import randint, choice
  
