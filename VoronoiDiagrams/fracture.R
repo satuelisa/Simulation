@@ -42,6 +42,7 @@ suppressMessages(library(doParallel))
 registerDoParallel(makeCluster(detectCores() - 1))
 celdas <- foreach(p = 1:(n * n), .combine=c) %dopar% celda(p)
 stopImplicitCluster()
+
 voronoi <- matrix(celdas, nrow = n, ncol = n, byrow=TRUE)
 rotate <- function(x) t(apply(x, 2, rev))
 png("p4s.png")
@@ -150,7 +151,6 @@ propaga <- function(replica) {
 #for (r in 1:10) { # para pruebas sin paralelismo
 #    propaga(r)
 #}
-suppressMessages(library(doParallel))
 registerDoParallel(makeCluster(detectCores() - 1))
 largos <- foreach(r = 1:200, .combine=c) %dopar% propaga(r)
 stopImplicitCluster()
